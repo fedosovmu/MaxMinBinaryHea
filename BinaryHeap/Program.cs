@@ -16,7 +16,7 @@ namespace BinaryHeap
                 Console.WriteLine("Extract: " + maxHeap.Extract());
 
             Console.WriteLine("\nMin binary heap");
-            var minHeap = new MinBinaryHeap<int>(5, 3, 2, 1, 17, 18, 19, 8, 20, 9);
+            var minHeap = new MinBinaryHeap<int>(9, 14, 18, 32, 8, 4, 7, 11, 10, 5);
             while (minHeap.Size > 0)
                 Console.WriteLine("Extract: " + minHeap.Extract());
 

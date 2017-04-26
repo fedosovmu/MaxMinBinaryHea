@@ -12,18 +12,18 @@ namespace BinaryHeap
 
 
 
-        public virtual int Сompare(T a, T b)
-        {
-            return a.CompareTo(b);
-        }
-
-
-
         public MaxBinaryHeap(params T[] array) 
         {
             this.list = new List<T>();
             foreach (T i in array)
                 this.Insert(i);
+        }
+
+
+
+        public virtual int Сompare(T a, T b)
+        {
+            return a.CompareTo(b);
         }
 
 
@@ -40,20 +40,20 @@ namespace BinaryHeap
 
         public void Insert(T value)
         {
-            int brother = Size;
             this.list.Add(value);
-            int parent = (brother - 1) / 2;
+            int elem = Size - 1;
+            int parent = (Size - 2) / 2;
 
-            while (brother > 0 && parent >= 0)
+            while (elem > 0 && parent >= 0)
             {
-                if (Сompare(this.list[parent], this.list[brother]) < 0)
+                if (Сompare(this.list[parent], this.list[elem]) < 0)
                 {
-                    T temp = this.list[brother];
-                    this.list[brother] = this.list[parent];
+                    T temp = this.list[elem];
+                    this.list[elem] = this.list[parent];
                     this.list[parent] = temp;
                 }
-                brother = parent;
-                parent = (brother - 1) / 2;
+                elem = parent;
+                parent = (elem - 1) / 2;
             }
         }
 
@@ -61,20 +61,20 @@ namespace BinaryHeap
 
         public T Extract()
         {
-            T MaxValue = list[0];
+            T maxValue = list[0];
             list[0] = list[Size - 1];
             list.RemoveAt(Size - 1);
             heapify(0);
-            return MaxValue;
+            return maxValue;
         }
 
 
 
         public void heapify(int i)
         {
-            int left, right;
-            left = 2 * i + 1;
-            right = 2 * i + 2;
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+
             if (left < Size && Сompare(this.list[i], this.list[left]) < 0)
             {
                 T temp = this.list[i];
@@ -82,6 +82,7 @@ namespace BinaryHeap
                 this.list[left] = temp;
                 heapify(left);
             }
+
             if (right < Size && Сompare(this.list[i], this.list[right]) < 0)
             {
                 T temp = this.list[i];

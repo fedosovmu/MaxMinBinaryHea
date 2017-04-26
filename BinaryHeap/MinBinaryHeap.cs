@@ -10,6 +10,8 @@ namespace BinaryHeap
     {
         public MinBinaryHeap (params T[] array) : base(array) { }
 
+
+
         public override int Сompare(T a, T b)
         {
             return a.CompareTo(b) * -1;
